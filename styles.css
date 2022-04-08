@@ -18,15 +18,15 @@ body{
 .help-button{
   text-decoration: none;
   color: #AAA;
-  font-size: 4vmin;
-  width: 5vmin;
-  height: 5vmin;
+  font-size: 8vmin;
+  width: 8vmin;
+  height: 8vmin;
   min-width: 35px;
   min-height: 35px;
   background: none;
+  fill: #AAA;
   border: none;
   cursor: pointer;
-  transition: fill 150ms ease-in-out;
   flex-shrink: 0;
   position: absolute;
   top: 2rem;

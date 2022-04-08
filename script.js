@@ -73,8 +73,7 @@ async function handleInput (event){
 
   if (!canMoveUp() && !canMoveDown() && !canMoveLeft() && !canMoveRight()){
     newTile.waitForTransition(true).then(()=> {
-      gameOverOverlay.classList.add('active')
-      alert("You lose")
+      gameOverOverlay.classList.add('active');
     })
     return
   }
