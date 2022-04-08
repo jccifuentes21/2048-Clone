@@ -1,0 +1,150 @@
+*, *::before, *::after{
+  box-sizing: border-box;
+  font-family: Arial;
+}
+
+/* Using vmin to make it responsive */
+body{
+  background-color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  font-size: 7.5vmin;
+  overflow: hidden;
+}
+
+.help-button{
+  text-decoration: none;
+  color: #AAA;
+  font-size: 4vmin;
+  width: 5vmin;
+  height: 5vmin;
+  min-width: 35px;
+  min-height: 35px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: fill 150ms ease-in-out;
+  flex-shrink: 0;
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+}
+
+.modal-overlay, .game-over-overlay{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: -1;
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  opacity: 0;
+  transition: 300ms ease-in-out;
+}
+
+.modal-overlay.active, .game-over-overlay.active{
+  opacity: 1;
+  transition: 300ms ease-in-out;
+  z-index: 3;
+
+}
+
+.welcome-page, .game-over{
+  display: flex;
+  font-size: 2vmin;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem;
+  color: #CCC;
+  border: solid 4px white;
+  border-radius: 1rem;
+  width: 50vw;
+  height: 75vh;
+  position: absolute;
+  background-color: #333;
+}
+
+.game-over{
+  width: 25vw;
+  height: 30vh;
+}
+
+.play-again-button{
+  text-decoration: none;
+  color: #CCC;
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background-color:#555;
+  border-radius: 1em;
+  transition: 100ms ease-in-out;
+}
+
+.play-again-button:hover{
+  background-color: #AAA;
+  color: #fff;
+  transition: 150ms;
+}
+
+#start{
+  font-size: 4vmin;
+  text-decoration: none;
+  color: #CCC;
+  margin-top: 3rem;
+  padding: 1rem 2rem;
+  background-color: #555;
+  border-radius: 1em;
+  transition: 150ms;
+}
+#start:hover{
+  background-color: #AAA;
+  color: #fff;
+  transition: 150ms;
+
+}
+
+#game-board {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-size), var(--cell-size));
+  grid-template-rows: repeat(var(--grid-size), var(--cell-size));
+  background-color: #CCC;
+  gap: var(--cell-gap);
+  border-radius: 1vmin;
+  padding: var(--cell-gap);
+  position: relative;
+}
+
+.cell{
+  background-color: #AAA;
+  border-radius: 1vmin;
+}
+
+.tile{
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: var(--cell-size);
+  height: var(--cell-size);
+  border-radius: 1vmin;
+  /* top and left calculations are for positioning the tiles in the grid by using and x and y value. Take the x and y value, multiply it by the cell size and take into account the gaps between each cell, and the gaps outside of the gap on the outside of the grid. */
+  top: calc(var(--y) * (var(--cell-size) + var(--cell-gap)) + var(--cell-gap));
+  left: calc(var(--x) * (var(--cell-size) + var(--cell-gap)) + var(--cell-gap));
+  font-weight: bold;
+  /* As the number increases, make the background color darker, and change the color also related to that background color. This happens in Javascript (the lightness of the hsl value) */
+  background-color: hsl(0, 50%, var(--background-lightness));
+  color: hsl(0, 25%, var(--text-lightness));
+  animation: show 200ms ease-in-out;
+  transition: 100ms ease-in-out;
+}
+
+@keyframes show {
+  0% {
+    opacity: .5;
+    transform: scale(0);
+  }
+}
